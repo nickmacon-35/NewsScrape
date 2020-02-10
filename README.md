@@ -1,0 +1,2 @@
+# NewsScrape
+homework 18
