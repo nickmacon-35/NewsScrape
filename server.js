@@ -27,19 +27,20 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // Routes
 
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with axios
-  axios.get("http://www.echojs.com/").then(function(response) {
+  axios.get("https://www.theringer.com/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("article h2").each(function(i, element) {
+    $(".c-entry-box--compact__body h2").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
@@ -50,9 +51,30 @@ app.get("/scrape", function(req, res) {
       result.link = $(this)
         .children("a")
         .attr("href");
-
+      console.log(result);
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
+        .then(function(dbArticle) {
+          // View the added result in the console
+          console.log(dbArticle);
+        })
+        .catch(function(err) {
+          // If an error occurred, log it
+          console.log(err);
+        });
+    });
+
+    $(".c-entry-box--compact__body p").each(function(i, element) {
+      // Save an empty result object
+      var result2 = {};
+
+      // Add the text and href of every link, and save them as properties of the result object
+      result2.title = $(this)
+        .children("a")
+        .text();
+      console.log(result2);
+      // Create a new Article using the `result` object built from scraping
+      db.Article.create(result2)
         .then(function(dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
