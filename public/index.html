@@ -21,6 +21,15 @@
         float: right;
         width: 30%;
       }
+      #myNotesTitle {
+        float: right;
+        width: 30%;
+        font-weight: bold;
+      }
+      #myNotesBody {
+        float: right;
+        width: 30%;
+      }
       textarea, input {
         display: block;
         width: 100%;
@@ -34,14 +43,36 @@
         height: 200px;
         font-size: 18px;
       }
+      /* .delete {
+        margin-left: 20px;
+        color: red;
+        cursor: pointer;
+        text-align: right;
+      }
+      #action-button {
+        display: inline-block;
+      }
+      #buttons {
+        margin: 20px;
+      } */
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <h1>Scraping The Ringer</h1>
+      <h2><i>I'm after you, Bill Simmons</i></h2>
       <div id="articles"></div>
       <div id="notes"></div>
+      <br><br>
+      <div id="myNotesTitle"></div>
+      <br><br>
+      <div id="myNotesBody"></div>
+      <div id="buttons">
+        <div id="action-button">
+          <button id="make-new">Submit</button>
+        </div>
+        <!-- <button id="clear-all">Delete All Notes</button> -->
+      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="app.js"></script>

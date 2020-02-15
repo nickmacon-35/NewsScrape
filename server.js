@@ -40,17 +40,26 @@ app.get("/scrape", function(req, res) {
     var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $(".c-entry-box--compact__body h2").each(function(i, element) {
+
+
+
+
+
+    $(".c-entry-box--compact__body").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
       result.title = $(this)
-        .children("a")
+        .children("h2")
         .text();
       result.link = $(this)
+        .children("h2")
         .children("a")
         .attr("href");
+      result.summary = $(this)
+        .children(".p-dek")
+        .text();
       console.log(result);
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
@@ -64,31 +73,14 @@ app.get("/scrape", function(req, res) {
         });
     });
 
-    // $(".c-entry-box--compact__body p").each(function(i, element) {
-    //   // Save an empty result object
-    //   var result2 = {};
-
-    //   // Add the text and href of every link, and save them as properties of the result object
-    //   result2.summary = $(this)
-    //     .children("a")
-    //     .text();
-    //   console.log(result2);
-    //   // Create a new Article using the `result` object built from scraping
-    //   db.Article.create(result2)
-    //     .then(function(dbArticle) {
-    //       // View the added result in the console
-    //       console.log(dbArticle);
-    //     })
-    //     .catch(function(err) {
-    //       // If an error occurred, log it
-    //       console.log(err);
-    //     });
-    // });
-
     // Send a message to the client
     res.send("Scrape Complete");
   });
 });
+
+
+
+
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
@@ -139,6 +131,35 @@ app.post("/articles/:id", function(req, res) {
       res.json(err);
     });
 });
+
+
+
+
+
+
+
+// // Delete One from the DB
+// app.get("/delete/:id", function(req, res) {
+//   // Remove a note using the objectID
+//   db.notes.remove(
+//     {
+//       _id: mongojs.ObjectID(req.params.id)
+//     },
+//     function(error, removed) {
+//       // Log any errors from mongojs
+//       if (error) {
+//         console.log(error);
+//         res.send(error);
+//       }
+//       else {
+//         // Otherwise, send the mongojs response to the browser
+//         // This will fire off the success function of the ajax request
+//         console.log(removed);
+//         res.send(removed);
+//       }
+//     }
+//   );
+// });
 
 // Start the server
 app.listen(PORT, function() {
