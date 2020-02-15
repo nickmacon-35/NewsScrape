@@ -5,7 +5,6 @@ $.getJSON("/articles", function(data) {
     // Display the apropos information on the page
     $("#articles").append("<p data-id='" + data[i]._id + "'>" + "<b>Title: " + data[i].title + "</b><br><br />" + 
     "Summary: " + data[i].summary + "<br><br />" + "Link: " + data[i].link + "<br><br><br></p>");
-    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].summary + "</p>");
   }
 });
 
@@ -76,6 +75,19 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // // When user clicks the delete button for a note
 // $(document).on("click", ".delete", function() {
