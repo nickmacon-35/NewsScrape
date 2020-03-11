@@ -26,7 +26,7 @@ $(document).on("click", "p", function() {
       console.log(data);
 
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h4>" + data.title + "</h4>");
       // $("#notes").append("<h2>" + data.summary + "</h2>");
       // An input to enter a new title
       $("#notes").append("<input id='titleinput' name='title' >");
