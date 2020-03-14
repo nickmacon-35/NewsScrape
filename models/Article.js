@@ -12,10 +12,10 @@ var ArticleSchema = new Schema({
     required: true
   },
   // `link` is required and of type String
-  link: {
+  link: [{
     type: String,
     required: true
-  },
+  }],
   // `summary` is required and of type String
   summary: {
     type: String,
