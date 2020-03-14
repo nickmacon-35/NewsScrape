@@ -2,9 +2,15 @@
 $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
+    var links = "";
+    data[i].link.forEach(function(entry) {
+      links += `<p>${entry}</p>`;
+    });
+    
     // Display the apropos information on the page
+    //console.log(data[i].link);
     $("#articles").append("<p data-id='" + data[i]._id + "'>" + "<b>Title: " + data[i].title + "</b><br><br />" + 
-    "Summary: " + data[i].summary + "<br><br />" + "Link: " + data[i].link + "<br><br><br></p>");
+    "Summary: " + data[i].summary + "<br><br />" + "Link: " + links + "<br><br><br></p>");
   }
 });
 
