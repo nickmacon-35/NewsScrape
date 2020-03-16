@@ -2,16 +2,21 @@
 $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
-    var links = "";
-    data[i].link.forEach(function(entry) {
-      links += `<p>${entry}</p>`;
+    var comments = "";
+    // data[i].commentTitle.forEach(function(entry) {
+    //   console.log(entry);
+    //   comments += `<h4>${entry}</h4>`;
+    // });
+    data[i].comment.forEach(function(entry1) {
+      console.log(entry1);
+      comments += `<p>${entry1}</p>`;
     });
-    
+
     // Display the apropos information on the page
-    //console.log(data[i].link);
+    //console.log(data[i].comment);
     $("#articles").append("<p data-id='" + data[i]._id + "'>" + "<b>Title: " + data[i].title + "</b><br><br />" + 
-    "Summary: " + data[i].summary + "<br><br />" + "Link: " + links + "<br><br><br></p>");
-  }
+    "Summary: " + data[i].summary + "<br><br />" + "Comments: " + comments + "<br><br><br></p>");
+};
 });
 
 
@@ -35,21 +40,21 @@ $(document).on("click", "p", function() {
       $("#notes").append("<h4>" + data.title + "</h4>");
       // $("#notes").append("<h2>" + data.summary + "</h2>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
+      // $("#notes").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
 
-      // If there's a note in the article
-      if (data.note) {
-        // Place the title of the note in the title input
-        $("#titleinput").val(data.note.title);
-        // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
-        $("#myNotesTitle").append(data.note.title);
-        $("#myNotesBody").append(data.note.body);
-      }
+      // // If there's a note in the article
+      // if (data.note) {
+      //   // Place the title of the note in the title input
+      //   $("#titleinput").val(data.note.title);
+      //   // Place the body of the note in the body textarea
+      //   $("#bodyinput").val(data.note.body);
+      //   $("#myNotesTitle").append(data.note.title);
+      //   $("#myNotesBody").append(data.note.body);
+      // }
     });
 });
 
@@ -64,7 +69,7 @@ $(document).on("click", "#savenote", function() {
     url: "/articles/" + thisId,
     data: {
       // Value taken from title input
-      title: $("#titleinput").val(),
+      // title: $("#titleinput").val(),
       // Value taken from note textarea
       body: $("#bodyinput").val()
     }
@@ -78,7 +83,7 @@ $(document).on("click", "#savenote", function() {
     });
 
   // Also, remove the values entered in the input and textarea for note entry
-  $("#titleinput").val("");
+  // $("#titleinput").val("");
   $("#bodyinput").val("");
 });
 
@@ -116,4 +121,4 @@ $(document).on("click", "#savenote", function() {
 //       $("#action-button").html("<button id='make-new'>Submit</button>");
 //     }
 //   });
-// });
+//  ]);

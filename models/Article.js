@@ -11,8 +11,13 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  // `link` is required and of type String
-  link: [{
+  // // `commentTitle` is required and of type String
+  // commentTitle: [{
+  //   type: String,
+  //   required: true
+  // }],
+  // `comment` is required and of type String
+  comment: [{
     type: String,
     required: true
   }],
