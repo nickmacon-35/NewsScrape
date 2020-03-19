@@ -2,14 +2,15 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>Scraping With Mongoose</title>
+    <title>Comment Section</title>
     <style>
-      body { background-color: #F2F6D0 }
+      body { background-image: url(https://i.pinimg.com/originals/36/f0/94/36f0949c623b61a235fd6645fa507236.jpg); }
       #wrapper {
         width: 960px;
         margin-left: auto;
         margin-right: auto;
         padding-top: 5%;
+        color: white;
       }
       #articles {
         display: inline-block;
@@ -21,19 +22,10 @@
         float: right;
         width: 30%;
       }
-      #myNotesTitle {
-        float: right;
-        width: 30%;
-        font-weight: bold;
-      }
-      #myNotesBody {
-        float: right;
-        width: 30%;
-      }
       textarea, input {
         display: block;
         width: 100%;
-        background-color: #FCF5C7;
+        background-color: orangered;
       }
       input {
         height: 36px;
@@ -43,23 +35,13 @@
         height: 200px;
         font-size: 18px;
       }
-      .delete {
-        margin-left: 20px;
-        color: red;
-        cursor: pointer;
-        text-align: right;
+      #bodyinput {
+        font-family: Georgia, 'Times New Roman', Times, serif;
       }
-      /* #action-button {
-        display: inline-block;
-      }
-      #buttons {
-        margin: 20px;
-      } */
     </style>
   </head>
   <body>
     <div id="wrapper">
-      <h1>Scraping My Project</h1>
       <h2><i>This would be where the comment section goes.</i></h2>
       <div id="articles">
       </div>
